@@ -65,12 +65,16 @@ nav a {
   color: #bbb;
   font-size: 13px;
   text-decoration: none;
+  transition: 0.3s ease;
+  position: relative;
 }
 
-nav a:hover { color: #c3a16a; }
-
+nav a:hover {
+  color: #c3a16a;
+  letter-spacing: 1px;
+}
 .hero {
-  min-height: 620px;
+  min-height: 680px;
   display: flex;
   align-items: center;
   padding: 90px 9%;
@@ -80,11 +84,6 @@ nav a:hover { color: #c3a16a; }
     url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2000')
     center/cover;
 }
-
-.hero-content {
-  max-width: 680px;
-}
-
 .label {
   color: #d0ad72;
   letter-spacing: 4px;
