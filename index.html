@@ -191,28 +191,33 @@ nav a:hover {
 }
 .categories {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 38px;
+  margin-bottom: 42px;
 }
 
 .categories button {
-  padding: 10px 20px;
-  background: transparent;
-  border: 1px solid #34353b;
-  color: #bbb;
+  padding: 12px 23px;
+  background: rgba(21, 22, 26, 0.8);
+  border: 1px solid rgba(195, 161, 106, 0.25);
+  color: #bdb8ae;
   cursor: pointer;
-  border-radius: 3px;
-  transition: .3s;
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
 .categories button.active,
 .categories button:hover {
-  background: #c3a16a;
+  background: linear-gradient(135deg, #d8b77e, #b18b50);
   color: #08090c;
-  border-color: #c3a16a;
+  border-color: #d8b77e;
+  box-shadow: 0 5px 18px rgba(195, 161, 106, 0.2);
+  transform: translateY(-2px);
 }
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
