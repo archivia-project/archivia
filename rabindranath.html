@@ -9,102 +9,152 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
- background:#080808;
- color:#e8e2d6;
- font-family:'Noto Serif Bengali',serif;
- line-height:2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-header{
- padding:22px 8%;
- border-bottom:1px solid #80652d;
- display:flex;
- justify-content:space-between;
- align-items:center;
+
+body {
+  background: #080808;
+  color: #e8e2d6;
+  font-family: 'Noto Serif Bengali', serif;
+  line-height: 2;
 }
-.logo{
- color:#d5b46b;
- font-family:'Playfair Display',serif;
- font-size:25px;
- letter-spacing:4px;
+
+header {
+  padding: 22px 8%;
+  border-bottom: 1px solid #80652d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-header a{
- color:#c9ad70;
- text-decoration:none;
- font-size:14px;
+
+.logo {
+  color: #d5b46b;
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  letter-spacing: 4px;
 }
-.container{
- max-width:900px;
- margin:auto;
- padding:35px 22px 70px;
+
+header a {
+  color: #c9ad70;
+  text-decoration: none;
+  font-size: 14px;
 }
-.hero{text-align:center}
-.hero img{
- width:100%;
- max-width:620px;
- height:390px;
- object-fit:cover;
- object-position:center 25%;
- border:1px solid #80652d;
- border-radius:5px;
- filter:grayscale(100%);
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 35px 22px 70px;
 }
-.tag{
- color:#c9a85d;
- letter-spacing:3px;
- font-size:12px;
- margin-top:30px;
+
+.hero {
+  text-align: center;
 }
-h1{
- font-family:'Playfair Display','Noto Serif Bengali',serif;
- color:#e0c27a;
- font-size:38px;
- line-height:1.5;
- margin:12px 0;
+
+.hero img {
+  width: 100%;
+  max-width: 620px;
+  height: 390px;
+  object-fit: cover;
+  object-position: center 25%;
+  border: 1px solid #80652d;
+  border-radius: 5px;
+  filter: grayscale(100%);
 }
-.subtitle{
- color:#aaa;
- font-size:15px;
- margin-bottom:35px;
+
+.tag {
+  color: #c9a85d;
+  letter-spacing: 3px;
+  font-size: 12px;
+  margin-top: 30px;
 }
-hr{
- border:0;
- border-top:1px solid #5b4827;
- margin:35px 0;
+
+h1 {
+  font-family: 'Playfair Display', 'Noto Serif Bengali', serif;
+  color: #e0c27a;
+  font-size: 38px;
+  line-height: 1.5;
+  margin: 12px 0;
 }
-article h2{
- color:#d7b568;
- font-size:23px;
- margin:35px 0 14px;
- border-left:3px solid #b18b43;
- padding-left:15px;
+
+.subtitle {
+  color: #aaa;
+  font-size: 15px;
+  margin-bottom: 30px;
 }
-article p{
- color:#d0cbc1;
- font-size:16px;
- margin-bottom:20px;
- text-align:justify;
+
+.editorial-note {
+  background: #15120c;
+  border: 1px solid #80652d;
+  border-left: 4px solid #c9a85d;
+  padding: 16px 20px;
+  margin: 25px 0 35px;
+  color: #d8c9a5;
+  font-size: 14px;
+  line-height: 1.9;
 }
-.notice{
- border:1px solid #66512c;
- padding:15px;
- color:#aaa;
- font-size:13px;
- margin-top:35px;
+
+.editorial-note strong {
+  color: #e0c27a;
 }
-footer{
- border-top:1px solid #5b4827;
- text-align:center;
- padding:28px;
- color:#887b62;
- font-size:13px;
+
+hr {
+  border: 0;
+  border-top: 1px solid #5b4827;
+  margin: 35px 0;
 }
-@media(max-width:600px){
- h1{font-size:29px}
- .hero img{height:260px}
- article p{font-size:15px}
- header{padding:18px 5%}
+
+article h2 {
+  color: #d7b568;
+  font-size: 23px;
+  margin: 35px 0 14px;
+  border-left: 3px solid #b18b43;
+  padding-left: 15px;
+  line-height: 1.7;
+}
+
+article p {
+  color: #d0cbc1;
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+footer {
+  border-top: 1px solid #5b4827;
+  text-align: center;
+  padding: 28px;
+  color: #887b62;
+  font-size: 13px;
+}
+
+@media(max-width:600px) {
+  h1 {
+    font-size: 29px;
+  }
+
+  .hero img {
+    height: 260px;
+  }
+
+  article p {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  article h2 {
+    font-size: 20px;
+  }
+
+  header {
+    padding: 18px 5%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
 }
 </style>
 </head>
@@ -112,54 +162,76 @@ footer{
 <body>
 
 <header>
- <div class="logo">ARCHIVIA</div>
- <a href="index.html">← Back to Home</a>
+  <div class="logo">ARCHIVIA</div>
+  <a href="index.html">← Back to Home</a>
 </header>
 
 <main class="container">
 
- <div class="hero">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Rabindranath_Tagore.jpg"
-       alt="Rabindranath Tagore">
-  <div class="tag">ARCHIVIA DOCUMENTARY</div>
-  <h1>রবীন্দ্রনাথ ঠাকুর</h1>
-  <div class="subtitle">জীবন, সাহিত্য, ইতিহাস ও বিতর্ক</div>
- </div>
+  <div class="hero">
+    <img
+      src="https://upload.wikimedia.org/wikipedia/commons/d/d1/Rabindranath_Tagore.jpg"
+      alt="Rabindranath Tagore">
 
- <hr>
+    <div class="tag">ARCHIVIA DOCUMENTARY</div>
 
- <article>
+    <h1>রবীন্দ্রনাথ ঠাকুর</h1>
 
-  <h2>১. প্রারম্ভিক প্রেক্ষাপট</h2>
-  <p>এখানে তোমার মূল লেখার প্রথম অধ্যায় বসবে।</p>
+    <div class="subtitle">জীবন, সাহিত্য, ইতিহাস ও বিতর্ক</div>
+  </div>
 
-  <h2>২. পারিবারিক ইতিহাস ও সোনাগাছি প্রসঙ্গ</h2>
-  <p>এখানে তোমার মূল লেখার দ্বিতীয় অধ্যায় বসবে।</p>
+  <div class="editorial-note">
+    <strong>সম্পাদকীয় নোট:</strong>
+    এটি একটি মতামতধর্মী ও বিতর্কিত লেখা। এতে উল্লিখিত কিছু ঐতিহাসিক দাবি
+    স্বাধীনভাবে যাচাই করা প্রয়োজন। কোনো দাবিকে চূড়ান্ত ঐতিহাসিক সত্য
+    হিসেবে গ্রহণ করার আগে নির্ভরযোগ্য মূল তথ্যসূত্র পরীক্ষা করুন।
+  </div>
 
-  <h2>৩. সাহিত্যচুরি ও নোবেল পুরস্কার বিতর্ক</h2>
-  <p>এখানে তোমার মূল লেখার তৃতীয় অধ্যায় বসবে।</p>
+  <hr>
 
-  <h2>৪. রাজনৈতিক অবস্থান ও পূর্ববঙ্গ বিরোধিতা</h2>
-  <p>এখানে তোমার মূল লেখার চতুর্থ অধ্যায় বসবে।</p>
+  <article>
 
-  <h2>৫. ধর্মীয় দৃষ্টিভঙ্গি ও সাহিত্য নিষিদ্ধের ঘোষণা</h2>
-  <p>এখানে তোমার মূল লেখার পঞ্চম অধ্যায় বসবে।</p>
+    <h2>১. প্রারম্ভিক প্রেক্ষাপট</h2>
 
-  <h2>৬. সমাপ্তি</h2>
-  <p>এখানে তোমার মূল লেখার শেষ অধ্যায় বসবে।</p>
+    <p>বাংলা ভাষা ও সংস্কৃতিতে রবীন্দ্রনাথ ঠাকুরকে সাধারণত সর্বজনীন শ্রদ্ধা ও সম্মানের আসনে বসানো হয়। তবে সাম্প্রতিক বছরগুলোতে বাংলাদেশে রবীন্দ্রনাথের জন্ম ও মৃত্যুবার্ষিকী পালনে মিশ্র প্রতিক্রিয়া দেখা যাচ্ছে। ২০২৪ সালের ৫ই আগস্টের পর একটি নির্দিষ্ট মহল নতুন করে রবীন্দ্রনাথকে অতিমাত্রায় শ্রদ্ধার আসনে বসানোর চেষ্টা করছে। অথচ দালিলিক প্রমাণের ভিত্তিতে রবীন্দ্রনাথের প্রচলিত ভাবমূর্তির আড়ালে ভিন্ন এক ইতিহাস রয়েছে।</p>
 
- </article>
+    <h2>২. পারিবারিক ইতিহাস ও সোনাগাছি প্রসঙ্গ</h2>
 
- <div class="notice">
-  ঐতিহাসিক বিতর্ক ও গুরুতর অভিযোগ প্রকাশের ক্ষেত্রে মূল তথ্যসূত্র যাচাই করে উল্লেখ করা গুরুত্বপূর্ণ।
- </div>
+    <p>রবীন্দ্রনাথের পিতামহ দ্বারকানাথ ঠাকুর জমিদার ছিলেন না, বরং ইংরেজদের অধীনে ১৫০ টাকা বেতনের কর্মচারী ছিলেন। ইংরেজ সাহেবদের মনোরঞ্জনের জন্য তার বাড়িতে মদ, আফিম এবং নারীদের আসর বসত। এমনকি অর্থনীতিবিদ অমর্ত্য সেনের প্রসঙ্গ টেনে রবীন্দ্রনাথের জন্মপরিচয় নিয়েও প্রশ্ন তোলা হয়েছে।</p>
+
+    <p>কলকাতার বিখ্যাত যৌনপল্লী সোনাগাছির গোড়াপত্তন ঠাকুরবাড়ির জমিতে দ্বারকানাথ ঠাকুরের হাত ধরে হয়েছিল। ২০১২ সালের <em>আনন্দবাজার পত্রিকা</em>-র একটি নিবন্ধ এবং ইতিহাসবিদ গোলাম আহমেদ মর্তুজার বইয়ের উদ্ধৃতি অনুযায়ী, সোনাগাছিতে ঠাকুর পরিবারের ৪৩টি যৌনপল্লী ছিল, যা রবীন্দ্রনাথের জীবদ্দশা পর্যন্ত চালু ছিল। রবীন্দ্রনাথ নিজেও নিয়মিত সেখানে যেতেন এবং এর ফলে তিনি সিফিলিস রোগে আক্রান্ত হয়েছিলেন, যার উল্লেখ ১৯২৮ সালের <em>অবতার</em> পত্রিকায় ছিল। পাশাপাশি ১৮৮৩ সালে রবীন্দ্রনাথের বিয়ের চার মাসের মাথায় তার বৌদি কাদম্বরী দেবী আফিম সেবনে আত্মহত্যা করেন, যার পেছনে রবীন্দ্রনাথের সাথে তার সম্পর্কের জের ছিল।</p>
+
+    <h2>৩. সাহিত্যচুরি ও নোবেল পুরস্কার বিতর্ক</h2>
+
+    <p>১৯১৩ সালে রবীন্দ্রনাথ মূল বাংলা <em>গীতাঞ্জলি</em>-র জন্য নয়, বরং এর ইংরেজি অনুবাদ <em>সং অফারিংস</em> (Song Offerings)-এর জন্য নোবেল পান। এই অনুবাদটি রবীন্দ্রনাথ নিজে করেননি, বরং সি.এফ. অ্যান্ড্রুজ (যাকে তিনি কৌশলে 'দীনবন্ধু' নাম দিয়েছিলেন) করে দিয়েছিলেন।</p>
+
+    <p><em>সং অফারিংস</em>-এর ২৬ নম্বর কবিতার সাথে বাইবেলের <em>সং অফ সলোমন</em> এবং ৮৬ নম্বর কবিতার সাথে সেন্ট ফ্রান্সিসের <em>ক্যান্টিকেল</em>-এর মিল রয়েছে। এছাড়া তার <em>উর্বশী</em> কবিতাটি চার্লস সুইনবার্ন, <em>এবার ফিরাও মোরে</em> ও <em>বোধ</em> কবিতা শেলি ও ওয়ার্ডসওয়ার্থ, <em>ভারততীর্থ</em> কবিতা জালালউদ্দিন রুমি, এবং <em>গোরা</em> ও <em>ঘরে বাইরে</em> ইংরেজি লেখকদের লেখা থেকে নকল করা হয়েছে। পাশাপাশি শেখ সাদী, মির্জা গালিব ও ওমর খৈয়ামের লেখাও নিজের নামে চালিয়ে দেওয়া হয়েছে।</p>
+
+    <p>সুরের ক্ষেত্রেও একই চিত্র দেখা যায়; বাংলাদেশের জাতীয় সংগীত <em>আমার সোনার বাংলা</em>-র সুর বাউল গগন হরকরার <em>আমি কোথায় পাব তারে</em> গান থেকে এবং <em>যদি তোর ডাক শুনে কেউ না আসে</em> গানটির সুর গগন হরকরার <em>ও মন অসার মায়ায় ভুলে রবে</em> গান থেকে চুরি করা হয়েছে। এছাড়া কাজী নজরুল ইসলাম ও লালন শাহের সাহিত্যকর্মও আত্মসাৎ করা হয়েছে।</p>
+
+    <h2>৪. রাজনৈতিক অবস্থান ও পূর্ববঙ্গ বিরোধিতা</h2>
+
+    <p>১৯০৫ সালে পূর্ব বাংলার পিছিয়ে পড়া জনগোষ্ঠীর অর্থনৈতিক উন্নতির লক্ষ্যে ইংরেজরা ঢাকাকে রাজধানী করে বঙ্গভঙ্গ করলে রবীন্দ্রনাথ ও হিন্দু জমিদাররা এর তীব্র বিরোধিতা করেন। সেই আন্দোলনের অংশ হিসেবেই <em>আমার সোনার বাংলা</em> গানটি লেখা হয়েছিল।</p>
+
+    <p>ইতিহাসবিদ ড. রমেশচন্দ্র মজুমদার, নীরদচন্দ্র চৌধুরী ও সুকৃতি রঞ্জন বিশ্বাসের উদ্ধৃতি অনুযায়ী, ১৯১২ সালের ২৮শে মার্চ কলকাতার গড়ের মাঠে ঢাকা বিশ্ববিদ্যালয় প্রতিষ্ঠার বিরোধিতা করে আয়োজিত সমাবেশে রবীন্দ্রনাথ ঠাকুর সভাপতিত্ব করেছিলেন। সে সময় ঢাকা বিশ্ববিদ্যালয়কে ব্যঙ্গ করে 'মক্কা বিশ্ববিদ্যালয়' বলা হতো।</p>
+
+    <h2>৫. ধর্মীয় দৃষ্টিভঙ্গি ও সাহিত্য নিষিদ্ধের ঘোষণা</h2>
+
+    <p>রবীন্দ্রনাথের <em>বীরগুরু</em> প্রবন্ধে মহানবী (সা.)-কে নিয়ে অবমাননাকর মন্তব্য করা হয়েছে এবং অন্য লেখায় মুসলমানদের 'যবন' (বর্বর) বলে সম্বোধন করা হয়েছে। <em>প্রায়শ্চিত্ত</em> নাটকের সংলাপে কেবল হিন্দু ধর্ম ও ব্রাহ্মণ রাজার শ্রেষ্ঠত্ব প্রচার করা হয়েছে। এছাড়া <em>কণ্ঠরোধ</em> প্রবন্ধে ব্রিটিশবিরোধী আন্দোলনকারী মুসলমানদের 'ইতর শ্রেণীর অবিবেচক' ও 'মূর্খ' বলে কটাক্ষ করা হয়েছে।</p>
+
+    <p>রবীন্দ্রনাথ নিজেই লিখেছিলেন যে, <em>"মুসলমান বিদ্বেষী বলে আমরা আমাদের জাতীয় সাহিত্য বিসর্জন দিতে পারি না, মুসলমানদের উচিত নিজেদের জাতীয় সাহিত্য নিজেদেরই সৃষ্টি করা"</em>। এছাড়া কবি মোতাহার হোসেন চৌধুরীর এক প্রশ্নের জবাবে শান্তিনিকেতনে রবীন্দ্রনাথ কোরআন ও রাসূল (সা.)-এর জীবনচরিত নিয়ে নেতিবাচক মন্তব্য করেছিলেন।</p>
+
+    <h2>৬. সমাপ্তি</h2>
+
+    <p>ঐতিহাসিক এই তথ্যগুলো বিবেচনায় নিয়ে রবীন্দ্রনাথের সাহিত্য এবং তার রচিত সংগীত বর্জন করা উচিত।</p>
+
+  </article>
 
 </main>
 
 <footer>
- © 2026 ARCHIVIA — A World of Documentaries
+  © 2026 ARCHIVIA — A World of Documentaries
 </footer>
 
 </body>
 </html>
-
