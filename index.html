@@ -260,24 +260,34 @@ nav a:hover {
   padding: 30px;
 }
 .tag {
-  color: #c3a16a;
+  display: inline-block;
+  color: #d0ad72;
   font-size: 10px;
-  letter-spacing: 3px;
+  font-weight: 600;
+  letter-spacing: 3.5px;
   text-transform: uppercase;
 }
 
 .card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 25px;
-  margin: 14px 0;
+  font-size: 27px;
+  font-weight: 600;
+  color: #f5ead5;
+  line-height: 1.35;
+  margin: 16px 0;
+  transition: color 0.3s ease;
+}
+
+.card:hover h3 {
+  color: #d8b77e;
 }
 
 .card p {
-  color: #999ba3;
+  color: #a5a5a5;
   font-size: 13px;
-  line-height: 1.8;
+  line-height: 1.9;
+  letter-spacing: 0.2px;
 }
-
 .story-link {
   display: inline-block;
   margin-top: 20px;
