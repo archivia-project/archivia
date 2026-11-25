@@ -73,6 +73,20 @@ nav a:hover {
   color: #c3a16a;
   letter-spacing: 1px;
 }
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0;
+  height: 1px;
+  background: #c3a16a;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
 .hero {
   min-height: 680px;
   display: flex;
