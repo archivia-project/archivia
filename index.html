@@ -4,20 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCHIVIA — A World of Documentaries</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>ARCHIVIA — Discover the Unknown</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --bg: #090b12;
-  --surface: #131725;
-  --border: #272d40;
-  --text: #f5f3fa;
-  --muted: #a2a5b4;
-  --accent: #b69aff;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -27,29 +19,29 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
+  background: #08090c;
+  color: #f5f5f5;
   font-family: 'Inter', sans-serif;
 }
 
 header {
-  min-height: 82px;
-  padding: 20px 8%;
+  height: 85px;
+  padding: 0 8%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--border);
-  background: rgba(9,11,18,.96);
+  background: #08090c;
+  border-bottom: 1px solid #22242a;
 }
 
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: 29px;
-  letter-spacing: 4px;
+  font-size: 30px;
   font-weight: 700;
+  letter-spacing: 4px;
 }
 
-.logo span { color: var(--accent); }
+.logo span { color: #c3a16a; }
 
 nav {
   display: flex;
@@ -57,228 +49,260 @@ nav {
 }
 
 nav a {
-  color: #c5c3d0;
-  text-decoration: none;
+  color: #bbb;
   font-size: 13px;
-  transition: .3s;
+  text-decoration: none;
 }
 
-nav a:hover { color: var(--accent); }
+nav a:hover { color: #c3a16a; }
 
 .hero {
-  min-height: 510px;
-  padding: 110px 8%;
+  min-height: 620px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  padding: 90px 9%;
   background:
-    linear-gradient(rgba(9,11,18,.65),rgba(9,11,18,.96)),
-    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1800')
+    linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.35),rgba(0,0,0,.12)),
+    linear-gradient(0deg,#08090c,transparent 35%),
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2000')
     center/cover;
 }
 
-.hero-content { max-width: 800px; }
+.hero-content {
+  max-width: 680px;
+}
 
-.eyebrow {
-  color: var(--accent);
-  font-size: 12px;
+.label {
+  color: #d0ad72;
   letter-spacing: 4px;
+  font-size: 11px;
+  margin-bottom: 25px;
   text-transform: uppercase;
-  margin-bottom: 24px;
 }
 
 .hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(42px,7vw,76px);
-  line-height: 1.15;
-  margin-bottom: 22px;
+  font-size: clamp(45px,7vw,82px);
+  line-height: 1.1;
+  margin-bottom: 25px;
 }
-
-.hero h1 span { color: var(--accent); }
 
 .hero p {
-  color: #c1c1cc;
-  line-height: 1.9;
-  max-width: 600px;
-  margin: auto;
-  font-size: 15px;
-}
-
-.search {
-  margin-top: 35px;
-  width: min(100%,480px);
-  padding: 17px 22px;
-  background: rgba(19,23,37,.9);
-  border: 1px solid #45405b;
-  border-radius: 8px;
-  color: white;
-  outline: none;
+  max-width: 530px;
+  color: #d0d0d0;
   font-size: 14px;
+  line-height: 1.9;
 }
 
-.search:focus { border-color: var(--accent); }
+.hero-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 15px 28px;
+  background: #c3a16a;
+  color: #08090c;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: .3s;
+}
+
+.hero-btn:hover {
+  background: white;
+  transform: translateY(-3px);
+}
 
 .section {
-  padding: 75px 8%;
+  padding: 85px 8%;
 }
 
-.section-heading {
+.heading {
   margin-bottom: 35px;
 }
 
-.section-heading small {
-  color: var(--accent);
-  letter-spacing: 3px;
-  font-size: 11px;
-  text-transform: uppercase;
+.heading small {
+  color: #c3a16a;
+  letter-spacing: 4px;
+  font-size: 10px;
 }
 
-.section-heading h2 {
+.heading h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 35px;
+  font-size: 37px;
   margin-top: 12px;
 }
 
-.section-heading p {
-  color: var(--muted);
-  font-size: 14px;
+.heading p {
+  color: #92949b;
+  font-size: 13px;
   margin-top: 12px;
   line-height: 1.7;
 }
 
+.search {
+  width: min(100%,460px);
+  padding: 16px 20px;
+  margin-bottom: 30px;
+  background: #15161a;
+  color: white;
+  border: 1px solid #34353b;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search:focus { border-color: #c3a16a; }
+
 .categories {
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 35px;
+  flex-wrap: wrap;
+  margin-bottom: 38px;
 }
 
 .categories button {
-  padding: 11px 22px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  color: #ddd;
-  border-radius: 30px;
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid #34353b;
+  color: #bbb;
   cursor: pointer;
+  border-radius: 3px;
   transition: .3s;
 }
 
-.categories button:hover,
-.categories button.active {
-  background: #8063c7;
-  border-color: #8063c7;
-  color: white;
+.categories button.active,
+.categories button:hover {
+  background: #c3a16a;
+  color: #08090c;
+  border-color: #c3a16a;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-  gap: 27px;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 35px 25px;
 }
 
 .card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  background: #111216;
   overflow: hidden;
-  transition: .35s;
+  border: 1px solid #25262b;
+  transition: .3s;
 }
 
 .card:hover {
-  transform: translateY(-7px);
-  border-color: var(--accent);
+  transform: translateY(-6px);
+  border-color: #c3a16a;
 }
 
-.card img {
-  display: block;
+.card-image {
+  height: 280px;
+  overflow: hidden;
+}
+
+.card-image img {
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
-  transition: .4s;
+  transition: .5s;
 }
 
-.card:hover img { transform: scale(1.04); }
+.card:hover img { transform: scale(1.05); }
 
-.card-image { overflow: hidden; }
-
-.card-content { padding: 23px; }
+.card-content {
+  padding: 25px;
+}
 
 .tag {
-  color: var(--accent);
-  font-size: 11px;
+  color: #c3a16a;
+  font-size: 10px;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
-  margin: 13px 0;
+  font-size: 25px;
+  margin: 14px 0;
 }
 
 .card p {
-  color: var(--muted);
+  color: #999ba3;
   font-size: 13px;
   line-height: 1.8;
 }
 
-.read-more {
+.story-link {
   display: inline-block;
-  margin-top: 18px;
-  color: var(--accent);
-  font-size: 12px;
+  margin-top: 20px;
+  color: #c3a16a;
   text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
 .empty {
   display: none;
-  color: var(--muted);
+  color: #999;
   margin-top: 25px;
 }
 
 .about {
-  padding: 75px 8%;
-  background: #111522;
+  padding: 90px 8%;
   text-align: center;
+  background: #111216;
 }
 
 .about h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 34px;
-  margin-bottom: 18px;
+  font-size: 38px;
+  margin-bottom: 20px;
 }
 
 .about p {
   max-width: 650px;
   margin: auto;
-  color: var(--muted);
+  color: #999ba3;
   font-size: 14px;
-  line-height: 1.9;
+  line-height: 2;
 }
 
 footer {
-  text-align: center;
   padding: 45px 20px;
-  border-top: 1px solid var(--border);
+  text-align: center;
+  border-top: 1px solid #25262b;
 }
 
 footer p {
-  color: var(--muted);
+  color: #777;
   font-size: 12px;
-  margin-top: 13px;
+  margin-top: 14px;
 }
 
-@media(max-width:600px) {
-  header { padding: 20px 5%; }
+@media(max-width:650px) {
+  header {
+    height: 75px;
+    padding: 0 5%;
+  }
+
   .logo { font-size: 23px; }
+
   nav { gap: 13px; }
+
   nav a { font-size: 11px; }
-  .hero { min-height: 440px; padding: 75px 5%; }
-  .section { padding: 55px 5%; }
-  .section-heading h2 { font-size: 29px; }
+
+  .hero {
+    min-height: 540px;
+    padding: 75px 6%;
+    background-position: center;
+  }
+
+  .section { padding: 60px 5%; }
+
+  .heading h2 { font-size: 30px; }
+
   .grid { grid-template-columns: 1fr; }
-  .card img { height: 230px; }
+
+  .card-image { height: 240px; }
 }
 </style>
 </head>
@@ -295,36 +319,47 @@ footer p {
   </nav>
 </header>
 
+<!-- FEATURED HERO -->
+
 <section class="hero">
   <div class="hero-content">
-    <div class="eyebrow">A World of Documentaries</div>
 
-    <h1>Discover Stories.<br><span>Explore the Unknown.</span></h1>
+    <div class="label">ARCHIVIA ORIGINAL COLLECTION</div>
+
+    <h1>Discover the<br>Unknown World.</h1>
 
     <p>
-      Journey through history, science, nature and beyond.
-      Discover fascinating stories and knowledge from around the world.
+      Beyond what we see lies a world of extraordinary stories.
+      Explore history, science, nature and the mysteries
+      that shape our universe.
     </p>
 
-    <input
-      class="search"
-      id="search"
-      type="text"
-      placeholder="Search documentaries..."
-    >
+    <a href="#documentaries" class="hero-btn">
+      EXPLORE DOCUMENTARIES →
+    </a>
+
   </div>
 </section>
 
+<!-- DOCUMENTARY GALLERY -->
+
 <section class="section" id="documentaries">
 
-  <div class="section-heading">
-    <small>THE COLLECTION</small>
-    <h2>Explore Documentaries</h2>
-    <p>Knowledge, stories and discoveries worth exploring.</p>
+  <div class="heading">
+    <small>EXPLORE OUR COLLECTION</small>
+    <h2>Latest Documentaries</h2>
+    <p>Discover stories, knowledge and extraordinary discoveries.</p>
   </div>
 
+  <input
+    class="search"
+    id="search"
+    type="text"
+    placeholder="Search documentaries..."
+  >
+
   <div class="categories">
-    <button class="active" data-category="All">All</button>
+    <button class="active" data-category="All">All Stories</button>
     <button data-category="History">History</button>
     <button data-category="Science">Science</button>
     <button data-category="Nature">Nature</button>
@@ -335,49 +370,49 @@ footer p {
 
     <article class="card" data-category="History">
       <div class="card-image">
-        <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=800" alt="Ancient history">
+        <img src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1000" alt="Ancient history">
       </div>
       <div class="card-content">
-        <span class="tag">History</span>
+        <span class="tag">HISTORY</span>
         <h3>The Lost Civilizations</h3>
-        <p>Discover ancient civilizations, forgotten kingdoms and the mysteries of human history.</p>
-        <a href="#" class="read-more">Explore Story →</a>
+        <p>Explore the forgotten civilizations that shaped humanity and left mysteries behind.</p>
+        <a href="#" class="story-link">READ THE STORY →</a>
       </div>
     </article>
 
     <article class="card" data-category="Science">
       <div class="card-image">
-        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800" alt="Science laboratory">
+        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1000" alt="Science">
       </div>
       <div class="card-content">
-        <span class="tag">Science</span>
+        <span class="tag">SCIENCE</span>
         <h3>The World of Science</h3>
-        <p>Explore scientific discoveries, inventions and ideas that changed our world.</p>
-        <a href="#" class="read-more">Explore Story →</a>
+        <p>Discover scientific ideas, inventions and breakthroughs that changed our world.</p>
+        <a href="#" class="story-link">READ THE STORY →</a>
       </div>
     </article>
 
     <article class="card" data-category="Nature">
       <div class="card-image">
-        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=800" alt="Wildlife">
+        <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1000" alt="Wildlife">
       </div>
       <div class="card-content">
-        <span class="tag">Nature</span>
+        <span class="tag">NATURE</span>
         <h3>Secrets of Wildlife</h3>
-        <p>Discover extraordinary wildlife and the beautiful secrets of our natural world.</p>
-        <a href="#" class="read-more">Explore Story →</a>
+        <p>Discover the remarkable lives of animals and the wonders of the natural world.</p>
+        <a href="#" class="story-link">READ THE STORY →</a>
       </div>
     </article>
 
     <article class="card" data-category="Space">
       <div class="card-image">
-        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800" alt="Planet Earth">
+        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1000" alt="Earth from space">
       </div>
       <div class="card-content">
-        <span class="tag">Space</span>
+        <span class="tag">SPACE</span>
         <h3>Beyond Our Planet</h3>
-        <p>Journey into the universe and discover the wonders beyond our planet.</p>
-        <a href="#" class="read-more">Explore Story →</a>
+        <p>Journey beyond Earth and explore the fascinating mysteries of the universe.</p>
+        <a href="#" class="story-link">READ THE STORY →</a>
       </div>
     </article>
 
@@ -387,13 +422,20 @@ footer p {
 
 </section>
 
+<!-- ABOUT -->
+
 <section class="about" id="about">
-  <h2>About ARCHIVIA</h2>
+  <div class="heading">
+    <small>OUR PURPOSE</small>
+    <h2>About ARCHIVIA</h2>
+  </div>
+
   <p>
-    ARCHIVIA is a place for curious minds.
-    Our mission is to collect fascinating stories,
-    explore knowledge and make the world easier to understand.
-    Every picture tells a story.
+    ARCHIVIA is a destination for curious minds.
+    We bring together fascinating stories, knowledge
+    and discoveries from across the world.
+    Every picture tells a story. Every story
+    opens a new world.
   </p>
 </section>
 
@@ -417,7 +459,8 @@ function filterCards() {
 
   cards.forEach(card => {
     const matchesCategory =
-      category === "All" || card.dataset.category === category;
+      category === "All" ||
+      card.dataset.category === category;
 
     const matchesSearch =
       card.innerText.toLowerCase().includes(query);
