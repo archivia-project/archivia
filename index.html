@@ -25,24 +25,37 @@ body {
 }
 
 header {
-  height: 85px;
+  height: 90px;
   padding: 0 8%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #08090c;
-  border-bottom: 1px solid #22242a;
+  background: rgba(8, 9, 12, 0.96);
+  border-bottom: 1px solid rgba(195, 161, 106, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
 }
-
+  
 .logo {
   font-family: 'Playfair Display', serif;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
+  color: #f5ead5;
+  text-shadow: 0 0 20px rgba(195, 161, 106, 0.18);
+  transition: 0.3s ease;
 }
 
-.logo span { color: #c3a16a; }
+.logo span {
+  color: #c3a16a;
+}
 
+.logo:hover {
+  letter-spacing: 6px;
+}
 nav {
   display: flex;
   gap: 30px;
