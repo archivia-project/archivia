@@ -289,12 +289,23 @@ nav a:hover {
   letter-spacing: 0.2px;
 }
 .story-link {
-  display: inline-block;
-  margin-top: 20px;
-  color: #c3a16a;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 24px;
+  color: #d0ad72;
   text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.story-link:hover {
+  color: #f5d9a8;
+  letter-spacing: 2px;
+  transform: translateX(5px);
 }
 
 .empty {
