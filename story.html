@@ -174,27 +174,56 @@ header a.logo {
   <p>© 2026 ARCHIVIA. All Rights Reserved.</p>
 </footer>
 
+
 <script>
 const stories = {
   "history": {
     category: "HISTORY",
     title: "The Lost Civilizations",
-    image: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400"
+    image: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400",
+    description: `
+      <p>Explore the forgotten civilizations that shaped humanity and left mysteries behind.</p>
+      <h2>Introduction</h2>
+      <p>Throughout history, great civilizations have risen, developed remarkable cultures and eventually disappeared. Their architecture, discoveries and traditions continue to inspire researchers today.</p>
+      <h2>Discover More</h2>
+      <p>This documentary explores the stories, achievements and unanswered questions surrounding ancient societies.</p>
+    `
   },
   "science": {
     category: "SCIENCE",
     title: "The World of Science",
-    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400"
+    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400",
+    description: `
+      <p>Discover the fascinating world of science and the ideas that changed our understanding of the universe.</p>
+      <h2>Introduction</h2>
+      <p>Science helps us understand how the world works through observation, experiments and discoveries.</p>
+      <h2>Discover More</h2>
+      <p>Explore scientific discoveries, famous researchers and inventions that continue to shape our lives.</p>
+    `
   },
   "nature": {
     category: "NATURE",
     title: "Secrets of Wildlife",
-    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1400"
+    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1400",
+    description: `
+      <p>Discover the incredible lives of animals and the ecosystems they inhabit.</p>
+      <h2>Introduction</h2>
+      <p>From dense forests to vast oceans, our planet supports an extraordinary variety of wildlife.</p>
+      <h2>Discover More</h2>
+      <p>Explore animal behaviour, natural habitats and why protecting biodiversity matters.</p>
+    `
   },
   "space": {
     category: "SPACE",
     title: "Beyond Our Planet",
-    image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1400"
+    image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1400",
+    description: `
+      <p>Travel beyond Earth and explore the mysteries of the universe.</p>
+      <h2>Introduction</h2>
+      <p>The universe contains countless galaxies, stars and planets. Humans have studied the night sky for centuries.</p>
+      <h2>Discover More</h2>
+      <p>Explore our solar system, distant galaxies and the history of space exploration.</p>
+    `
   }
 };
 
@@ -204,8 +233,10 @@ const story = stories[params.get("id")] || stories.history;
 document.getElementById("category").textContent = story.category;
 document.getElementById("title").textContent = story.title;
 document.getElementById("cover").src = story.image;
+document.getElementById("description").innerHTML = story.description;
 document.title = "ARCHIVIA — " + story.title;
 </script>
+
 
 </body>
 </html>
