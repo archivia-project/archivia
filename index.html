@@ -562,7 +562,16 @@ footer p {
 .card:hover .card-image::before {
   transform: translateX(120%);
 }
+  
+/* ARCHIVIA PREMIUM STICKY HEADER */
+header {
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
 
+header.scrolled {
+  background: rgba(8, 9, 12, 0.96);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
 </style>
 </head>
 
@@ -769,6 +778,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealItems.forEach(item => {
   revealObserver.observe(item);
+});
+  // ARCHIVIA PREMIUM STICKY HEADER
+window.addEventListener("scroll", () => {
+  const header = document.querySelector("header");
+
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
 });
 </script>
 
