@@ -367,8 +367,13 @@ nav a:hover::after {
 }
 
 .card-content {
-  padding: 34px;
+  padding: 38px;
   position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(25, 26, 32, 0.95),
+    rgba(10, 11, 15, 1)
+  );
 }
 .tag {
   display: inline-block;
@@ -381,12 +386,13 @@ nav a:hover::after {
 
 .card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 27px;
+  font-size: 29px;
   font-weight: 600;
   color: #f5ead5;
-  line-height: 1.35;
-  margin: 16px 0;
-  transition: color 0.3s ease;
+  line-height: 1.4;
+  letter-spacing: 0.2px;
+  margin: 18px 0;
+  transition: all 0.35s ease;
 }
 
 .card:hover h3 {
