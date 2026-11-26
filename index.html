@@ -514,6 +514,27 @@ footer p {
 
   .card-image { height: 240px; }
 }
+  /* ARCHIVIA PREMIUM SCROLL ANIMATION */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease,
+              transform 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 </style>
 </head>
 
@@ -697,6 +718,30 @@ buttons.forEach(button => {
 });
 
 search.addEventListener("input", filterCards);
+  // ARCHIVIA PREMIUM SCROLL REVEAL
+
+const revealItems = document.querySelectorAll(
+  ".hero-content, .heading, .card, .about p"
+);
+
+revealItems.forEach(item => {
+  item.classList.add("reveal");
+});
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+revealItems.forEach(item => {
+  revealObserver.observe(item);
+});
 </script>
 
 </body>
