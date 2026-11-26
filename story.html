@@ -28,10 +28,18 @@ header {
 }
 
 .logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px;
-  letter-spacing: 4px;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 1001;
+}
+
+.logo img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
 }
 
 .logo span { color: #c3a16a; }
