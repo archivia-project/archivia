@@ -572,10 +572,51 @@ header.scrolled {
   background: #08090c;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
+ /* ARCHIVIA PREMIUM LOADING SCREEN */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #08090c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#page-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#page-loader img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+#page-loader p {
+  color: #d5b46b;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+} 
 </style>
 </head>
 
 <body>
+  <div id="page-loader">
+  <img src="archivia-favicon.png" alt="ARCHIVIA">
+  <p>ARCHIVIA</p>
+</div>
 <header>
   <a href="index.html" class="logo">
     <img src="archivia-favicon.png" alt="ARCHIVIA">
@@ -788,6 +829,14 @@ window.addEventListener("scroll", () => {
   } else {
     header.classList.remove("scrolled");
   }
+});
+  // ARCHIVIA LOADING SCREEN
+window.addEventListener("load", () => {
+  const loader = document.getElementById("page-loader");
+
+  setTimeout(() => {
+    loader.classList.add("hide");
+  }, 700);
 });
 </script>
 
