@@ -112,15 +112,17 @@ nav a:hover::after {
   width: 100%;
 }
 .hero {
-  min-height: 680px;
+  min-height: 720px;
   display: flex;
   align-items: center;
-  padding: 90px 9%;
+  padding: 100px 9%;
+  position: relative;
   background:
-    linear-gradient(90deg,rgba(0,0,0,.88),rgba(0,0,0,.35),rgba(0,0,0,.12)),
-    linear-gradient(0deg,#08090c,transparent 35%),
+    linear-gradient(90deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.55) 48%, rgba(0,0,0,.15) 100%),
+    linear-gradient(0deg, #08090c 0%, transparent 45%),
     url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2000')
-    center/cover;
+    center/cover no-repeat;
+  background-attachment: scroll;
 }
 .label {
   color: #d0ad72;
