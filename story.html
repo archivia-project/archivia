@@ -105,18 +105,20 @@ footer {
   .story { padding: 0 6%; }
   header { padding: 22px 6%; }
 }
+
+header {
+  position: relative;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+header a.logo {
+  position: relative;
+  z-index: 99999;
+  pointer-events: auto;
+  cursor: pointer;
+}
 </style>
-</head>
-
-<body>
-
-<header>
-  <a href="./index.html" class="logo" style="position:relative; z-index:9999; display:inline-flex;">
-    <img src="./archivia-favicon.png" alt="ARCHIVIA" style="width:55px;height:55px;object-fit:contain;">
-  </a>
-</header>
-<a href="index.html#documentaries" class="back">← BACK TO DOCUMENTARIES</a>
-
 <main class="story">
 
   <div class="category" id="category">DOCUMENTARY</div>
