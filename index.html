@@ -535,6 +535,34 @@ footer p {
     transition: none;
   }
 }
+  
+/* ARCHIVIA PREMIUM IMAGE SHINE */
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgba(255, 235, 190, 0.28) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.9s ease;
+}
+
+.card:hover .card-image::before {
+  transform: translateX(120%);
+}
+
 </style>
 </head>
 
