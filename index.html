@@ -609,6 +609,36 @@ header.scrolled {
   0%, 100% { opacity: 0.5; transform: scale(0.95); }
   50% { opacity: 1; transform: scale(1.05); }
 } 
+ /* ARCHIVIA PREMIUM PAGE TRANSITION */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: pageFadeOut 0.35s ease both;
+}
+
+::view-transition-new(root) {
+  animation: pageFadeIn 0.45s ease both;
+}
+
+@keyframes pageFadeOut {
+  to {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+} 
 </style>
 </head>
 
