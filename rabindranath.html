@@ -29,11 +29,19 @@ header {
 }
 
 .logo {
-  color: #d5b46b;
-  font-family: 'Playfair Display', serif;
-  font-size: 25px;
-  letter-spacing: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
 }
+
+.logo img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
+}
+
 
 header a {
   color: #c9ad70;
@@ -159,7 +167,9 @@ footer {
 <body>
 
 <header>
-  <div class="logo">ARCHIVIA</div>
+  <a href="https://archivia-project.github.io/archivia/index.html" class="logo">
+    <img src="./archivia-favicon.png" alt="ARCHIVIA">
+  </a>
   <a href="index.html">← Back to Home</a>
 </header>
 
