@@ -92,6 +92,32 @@ h1 {
   font-size: 30px;
   margin: 35px 0 15px;
 }
+ /* ARCHIVIA DOCUMENTARY GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 35px 0;
+}
+
+.gallery img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
+@media(max-width:600px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery img {
+    height: 240px;
+  }
+} 
 
   /* ARCHIVIA READING PROGRESS BAR */
 .reading-progress {
@@ -160,6 +186,7 @@ header a.logo {
     src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400"
     alt="Documentary cover"
   >
+    <div class="gallery" id="gallery"></div>
 
   <div class="description" id="description">
 
@@ -196,70 +223,216 @@ header a.logo {
 
 
 <script>
+
+// ARCHIVIA DYNAMIC DOCUMENTARY SYSTEM
+
+const params = new URLSearchParams(window.location.search);
+
+const titleElement = document.getElementById("title");
+const categoryElement = document.getElementById("category");
+const coverElement = document.getElementById("cover");
+const descriptionElement = document.getElementById("description");
+const galleryElement = document.getElementById("gallery");
+
+// IMAGE PATH HANDLER
+
+function getCmsImage(path) {
+  if (!path) return "";
+
+  if (typeof path === "object") {
+    path = path.path || path.src || "";
+  }
+
+  if (!path) return "";
+
+  path = String(path).replace(/\\/g, "/");
+
+  if (/^(https?:|data:|blob:)/i.test(path)) {
+    return path;
+  }
+
+  path = path.replace(/^\/+/, "");
+
+  if (path.startsWith("archivia/")) {
+    return "/" + path;
+  }
+
+  if (path.startsWith("assets/uploads/")) {
+    return "/archivia/" + path;
+  }
+
+  return "/archivia/assets/uploads/" + path;
+}
+
+// CMS DOCUMENTARY LOADER
+
+async function loadCmsStory(slug) {
+  try {
+    const apiURL =
+      "https://api.github.com/repos/archivia-project/archivia/contents/documentaries?ref=main";
+
+    const response = await fetch(apiURL);
+
+    if (!response.ok) {
+      throw new Error("Could not find documentary collection");
+    }
+
+    const files = await response.json();
+
+    const file = files.find(item =>
+      item.type === "file" &&
+      item.name.toLowerCase() ===
+      (slug + ".json").toLowerCase()
+    );
+
+    if (!file) {
+      throw new Error("Documentary not found");
+    }
+
+    const result = await fetch(file.download_url);
+
+    if (!result.ok) {
+      throw new Error("Could not load documentary");
+    }
+
+    const doc = await result.json();
+
+    if (doc.published !== true) {
+      throw new Error("This documentary is not published");
+    }
+
+    // TITLE AND CATEGORY
+
+    titleElement.textContent = doc.title || "Untitled";
+
+    categoryElement.textContent =
+      (doc.category || "DOCUMENTARY").toUpperCase();
+
+    document.title = "ARCHIVIA — " + doc.title;
+
+    // COVER IMAGE
+
+    if (doc.cover) {
+      coverElement.src = getCmsImage(doc.cover);
+      coverElement.alt = doc.title || "Documentary cover";
+      coverElement.style.display = "block";
+    } else {
+      coverElement.style.display = "none";
+    }
+
+    // FULL STORY
+
+    descriptionElement.innerHTML = doc.body || "";
+
+    // FIX RICH TEXT IMAGE PATHS
+
+    descriptionElement.querySelectorAll("img").forEach(img => {
+      const src = img.getAttribute("src");
+
+      if (src) {
+        img.src = getCmsImage(src);
+      }
+
+      img.style.maxWidth = "100%";
+      img.style.height = "auto";
+    });
+
+    // GALLERY
+
+    galleryElement.innerHTML = "";
+
+    if (Array.isArray(doc.gallery)) {
+      doc.gallery.forEach(item => {
+        const imageURL = getCmsImage(item);
+
+        if (!imageURL) return;
+
+        const image = document.createElement("img");
+
+        image.src = imageURL;
+        image.alt = doc.title || "Documentary image";
+        image.loading = "lazy";
+
+        galleryElement.appendChild(image);
+      });
+    }
+
+  } catch (error) {
+    console.error("ARCHIVIA CMS:", error);
+
+    titleElement.textContent = "Documentary Unavailable";
+
+    categoryElement.textContent = "ARCHIVIA";
+
+    descriptionElement.textContent =
+      "This documentary could not be loaded. Please check the publication status or try again later.";
+
+    coverElement.style.display = "none";
+    galleryElement.innerHTML = "";
+  }
+}
+
+// LEGACY STATIC STORIES
+
 const stories = {
-  "history": {
-    category: "HISTORY",
-    title: "The Lost Civilizations",
-    image: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400",
-    description: `
-      <p>Explore the forgotten civilizations that shaped humanity and left mysteries behind.</p>
-      <h2>Introduction</h2>
-      <p>Throughout history, great civilizations have risen, developed remarkable cultures and eventually disappeared. Their architecture, discoveries and traditions continue to inspire researchers today.</p>
-      <h2>Discover More</h2>
-      <p>This documentary explores the stories, achievements and unanswered questions surrounding ancient societies.</p>
-    `
-  },
-  "science": {
+  science: {
     category: "SCIENCE",
     title: "The World of Science",
     image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1400",
-    description: `
-      <p>Discover the fascinating world of science and the ideas that changed our understanding of the universe.</p>
-      <h2>Introduction</h2>
-      <p>Science helps us understand how the world works through observation, experiments and discoveries.</p>
-      <h2>Discover More</h2>
-      <p>Explore scientific discoveries, famous researchers and inventions that continue to shape our lives.</p>
-    `
+    description: "<p>Discover the fascinating world of science and the ideas that changed our understanding of the universe.</p><h2>Introduction</h2><p>Science helps us understand how the world works through observation, experiments and discoveries.</p>"
   },
-  "nature": {
+
+  nature: {
     category: "NATURE",
     title: "Secrets of Wildlife",
     image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?w=1400",
-    description: `
-      <p>Discover the incredible lives of animals and the ecosystems they inhabit.</p>
-      <h2>Introduction</h2>
-      <p>From dense forests to vast oceans, our planet supports an extraordinary variety of wildlife.</p>
-      <h2>Discover More</h2>
-      <p>Explore animal behaviour, natural habitats and why protecting biodiversity matters.</p>
-    `
+    description: "<p>Discover the incredible lives of animals and the ecosystems they inhabit.</p>"
   },
-  "space": {
+
+  space: {
     category: "SPACE",
     title: "Beyond Our Planet",
     image: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1400",
-    description: `
-      <p>Travel beyond Earth and explore the mysteries of the universe.</p>
-      <h2>Introduction</h2>
-      <p>The universe contains countless galaxies, stars and planets. Humans have studied the night sky for centuries.</p>
-      <h2>Discover More</h2>
-      <p>Explore our solar system, distant galaxies and the history of space exploration.</p>
-    `
+    description: "<p>Travel beyond Earth and explore the mysteries of the universe.</p>"
+  },
+
+  history: {
+    category: "HISTORY",
+    title: "The Lost Civilizations",
+    image: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400",
+    description: "<p>Explore the forgotten civilizations that shaped humanity and left mysteries behind.</p>"
   }
 };
 
-const params = new URLSearchParams(window.location.search);
-const story = stories[params.get("id")] || stories.history;
+// PAGE ROUTING
 
-document.getElementById("category").textContent = story.category;
-document.getElementById("title").textContent = story.title;
-document.getElementById("cover").src = story.image;
-document.getElementById("description").innerHTML = story.description;
-document.title = "ARCHIVIA — " + story.title;
-  // ARCHIVIA READING PROGRESS
+const documentarySlug = params.get("doc");
+const oldStoryId = params.get("id");
+
+if (documentarySlug) {
+
+  loadCmsStory(documentarySlug);
+
+} else {
+
+  galleryElement.innerHTML = "";
+
+  const story = stories[oldStoryId] || stories.history;
+  categoryElement.textContent = story.category;
+  titleElement.textContent = story.title;
+  coverElement.src = story.image;
+  descriptionElement.innerHTML = story.description;
+
+  document.title = "ARCHIVIA — " + story.title;
+}
+
+// READING PROGRESS
+
 window.addEventListener("scroll", () => {
   const bar = document.getElementById("reading-progress-bar");
 
   const scrollTop = window.scrollY;
+
   const scrollHeight =
     document.documentElement.scrollHeight - window.innerHeight;
 
@@ -269,6 +442,7 @@ window.addEventListener("scroll", () => {
 
   bar.style.width = progress + "%";
 });
+
 </script>
 
 
