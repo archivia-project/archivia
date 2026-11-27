@@ -431,6 +431,8 @@ if (documentarySlug) {
 window.addEventListener("scroll", () => {
   const bar = document.getElementById("reading-progress-bar");
 
+  if (!bar) return;
+
   const scrollTop = window.scrollY;
 
   const scrollHeight =
