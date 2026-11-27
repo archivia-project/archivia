@@ -699,12 +699,15 @@ header.scrolled {
   >
 
   <div class="categories">
-    <button class="active" data-category="All">All Stories</button>
-    <button data-category="History">History</button>
-    <button data-category="Science">Science</button>
-    <button data-category="Nature">Nature</button>
-    <button data-category="Space">Space</button>
-  </div>
+  <button class="active" data-category="All">All Stories</button>
+  <button data-category="History">History</button>
+  <button data-category="Science">Science</button>
+  <button data-category="Nature">Nature</button>
+  <button data-category="Space">Space</button>
+  <button data-category="Biography">Biography</button>
+  <button data-category="Technology">Technology</button>
+  <button data-category="Other">Other</button>
+</div>
 
   <div class="grid" id="grid">
 
@@ -859,12 +862,22 @@ const grid = document.getElementById("grid");
 function getCmsImage(path) {
   if (!path) return "";
 
-  if (path.startsWith("http")) return path;
+  if (typeof path === "object") {
+    path = path.path || path.src || "";
+  }
 
-  if (path.startsWith("/archivia/")) return path;
+  if (!path) return "";
 
-  if (path.startsWith("/assets/uploads/")) {
-    return "/archivia" + path;
+  path = String(path).replace(/\\/g, "/");
+
+  if (/^(https?:|data:|blob:)/i.test(path)) {
+    return path;
+  }
+
+  path = path.replace(/^\/+/, "");
+
+  if (path.startsWith("archivia/")) {
+    return "/" + path;
   }
 
   if (path.startsWith("assets/uploads/")) {
@@ -873,6 +886,7 @@ function getCmsImage(path) {
 
   return "/archivia/assets/uploads/" + path;
 }
+
 
 async function loadCmsDocumentaries() {
   try {
