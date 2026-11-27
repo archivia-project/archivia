@@ -1,0 +1,109 @@
+
+media:
+  input: assets/uploads
+  output: /archivia/assets/uploads
+  rename: safe
+  extensions:
+    - jpg
+    - jpeg
+    - png
+    - webp
+    - gif
+  categories:
+    - image
+
+content:
+  - name: documentaries
+    label: Documentaries
+    type: collection
+    path: documentaries
+    format: json
+    filename:
+      template: "{title}.json"
+      field: false
+
+    view:
+      primary: title
+      fields:
+        - title
+        - category
+        - published
+        - date
+      sort:
+        - date
+        - title
+      default:
+        sort: date
+        order: desc
+
+    fields:
+      - name: title
+        label: Documentary Title
+        type: string
+        required: true
+
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - History
+            - Science
+            - Nature
+            - Space
+            - Biography
+            - Technology
+            - Other
+
+      - name: date
+        label: Publication Date
+        type: date
+
+      - name: published
+        label: Publish on Website
+        type: boolean
+        description: Turn on to show this documentary on the website.
+
+      - name: summary
+        label: Short Description
+        type: text
+
+      - name: cover
+        label: Main Cover Image
+        type: image
+        options:
+          path: covers
+          extensions:
+            - jpg
+            - jpeg
+            - png
+            - webp
+          rename: safe
+
+      - name: gallery
+        label: Additional Images
+        type: image
+        options:
+          path: gallery
+          multiple:
+            max: 20
+          unique: true
+          extensions:
+            - jpg
+            - jpeg
+            - png
+            - webp
+          rename: safe
+
+      - name: body
+        label: Full Documentary Story
+        type: rich-text
+        options:
+          format: html
+          path: story-images
+          rename: safe
+          switcher: true
+
+      - name: seo_description
+        label: SEO Description
+        type: text
