@@ -25,6 +25,8 @@ body {
 header {
   padding: 25px 8%;
   border-bottom: 1px solid #25262b;
+  position: relative;
+  z-index: 99999;
 }
 
 .logo {
@@ -41,8 +43,6 @@ header {
   object-fit: contain;
   display: block;
 }
-
-.logo span { color: #c3a16a; }
 
 .back {
   display: inline-block;
@@ -92,7 +92,11 @@ h1 {
   font-size: 30px;
   margin: 35px 0 15px;
 }
- /* ARCHIVIA DOCUMENTARY GALLERY */
+
+.description img {
+  max-width: 100%;
+  height: auto;
+}
 
 .gallery {
   display: grid;
@@ -109,17 +113,6 @@ h1 {
   border-radius: 5px;
 }
 
-@media(max-width:600px) {
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery img {
-    height: 240px;
-  }
-} 
-
-  /* ARCHIVIA READING PROGRESS BAR */
 .reading-progress {
   position: fixed;
   top: 0;
@@ -136,6 +129,7 @@ h1 {
   background: linear-gradient(90deg, #a8874e, #f0d18a);
   transition: width 0.1s linear;
 }
+
 footer {
   text-align: center;
   padding: 35px;
@@ -145,27 +139,28 @@ footer {
 }
 
 @media(max-width:600px) {
-  .story { padding: 0 6%; }
-  header { padding: 22px 6%; }
-}
+  .gallery {
+    grid-template-columns: 1fr;
+  }
 
-header {
-  position: relative;
-  z-index: 99999;
-  pointer-events: auto;
-}
+  .gallery img {
+    height: 240px;
+  }
 
-header a.logo {
-  position: relative;
-  z-index: 99999;
-  pointer-events: auto;
-  cursor: pointer;
+  .story {
+    padding: 0 6%;
+  }
+
+  header {
+    padding: 22px 6%;
+  }
 }
 </style>
-  </head>
+</head>
 
 <body>
-  <div class="reading-progress">
+
+<div class="reading-progress">
   <div id="reading-progress-bar"></div>
 </div>
 
@@ -174,6 +169,7 @@ header a.logo {
     <img src="./archivia-favicon.png" alt="ARCHIVIA">
   </a>
 </header>
+
 <main class="story">
 
   <div class="category" id="category">DOCUMENTARY</div>
@@ -186,10 +182,10 @@ header a.logo {
     src="https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400"
     alt="Documentary cover"
   >
-    <div class="gallery" id="gallery"></div>
+
+  <div class="gallery" id="gallery"></div>
 
   <div class="description" id="description">
-
     <p>
       Explore the forgotten civilizations that shaped humanity
       and left mysteries behind.
@@ -211,7 +207,6 @@ header a.logo {
       and unanswered questions surrounding ancient societies.
       Every discovery helps us understand our shared past.
     </p>
-
   </div>
 
 </main>
@@ -220,7 +215,6 @@ header a.logo {
   ARCHIVIA — A World of Documentaries
   <p>© 2026 ARCHIVIA. All Rights Reserved.</p>
 </footer>
-
 
 <script>
 
@@ -268,40 +262,21 @@ function getCmsImage(path) {
 
 async function loadCmsStory(slug) {
   try {
-    const apiURL =
-      "https://api.github.com/repos/archivia-project/archivia/contents/documentaries?ref=main";
+    const fileURL =
+      "https://cdn.jsdelivr.net/gh/archivia-project/archivia@main/documentaries/" +
+      slug + ".json";
 
-    const response = await fetch(apiURL);
+    const response = await fetch(fileURL);
 
     if (!response.ok) {
-      throw new Error("Could not find documentary collection");
+      throw new Error("Could not load documentary JSON: " + response.status);
     }
 
-    const files = await response.json();
-
-    const file = files.find(item =>
-      item.type === "file" &&
-      item.name.toLowerCase() ===
-      (slug + ".json").toLowerCase()
-    );
-
-    if (!file) {
-      throw new Error("Documentary not found");
-    }
-
-    const result = await fetch(file.download_url);
-
-    if (!result.ok) {
-      throw new Error("Could not load documentary");
-    }
-
-    const doc = await result.json();
+    const doc = await response.json();
 
     if (doc.published !== true) {
       throw new Error("This documentary is not published");
     }
-
-    // TITLE AND CATEGORY
 
     titleElement.textContent = doc.title || "Untitled";
 
@@ -309,8 +284,6 @@ async function loadCmsStory(slug) {
       (doc.category || "DOCUMENTARY").toUpperCase();
 
     document.title = "ARCHIVIA — " + doc.title;
-
-    // COVER IMAGE
 
     if (doc.cover) {
       coverElement.src = getCmsImage(doc.cover);
@@ -320,11 +293,7 @@ async function loadCmsStory(slug) {
       coverElement.style.display = "none";
     }
 
-    // FULL STORY
-
     descriptionElement.innerHTML = doc.body || "";
-
-    // FIX RICH TEXT IMAGE PATHS
 
     descriptionElement.querySelectorAll("img").forEach(img => {
       const src = img.getAttribute("src");
@@ -336,8 +305,6 @@ async function loadCmsStory(slug) {
       img.style.maxWidth = "100%";
       img.style.height = "auto";
     });
-
-    // GALLERY
 
     galleryElement.innerHTML = "";
 
@@ -361,11 +328,10 @@ async function loadCmsStory(slug) {
     console.error("ARCHIVIA CMS:", error);
 
     titleElement.textContent = "Documentary Unavailable";
-
     categoryElement.textContent = "ARCHIVIA";
 
     descriptionElement.textContent =
-      "This documentary could not be loaded. Please check the publication status or try again later.";
+      "This documentary could not be loaded. Please try again later.";
 
     coverElement.style.display = "none";
     galleryElement.innerHTML = "";
@@ -410,17 +376,16 @@ const documentarySlug = params.get("doc");
 const oldStoryId = params.get("id");
 
 if (documentarySlug) {
-
   loadCmsStory(documentarySlug);
-
 } else {
-
   galleryElement.innerHTML = "";
 
   const story = stories[oldStoryId] || stories.history;
+
   categoryElement.textContent = story.category;
   titleElement.textContent = story.title;
   coverElement.src = story.image;
+  coverElement.style.display = "block";
   descriptionElement.innerHTML = story.description;
 
   document.title = "ARCHIVIA — " + story.title;
@@ -446,7 +411,6 @@ window.addEventListener("scroll", () => {
 });
 
 </script>
-
 
 </body>
 </html>
