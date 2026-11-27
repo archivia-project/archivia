@@ -787,7 +787,9 @@ header.scrolled {
 
 <script>
 const buttons = document.querySelectorAll(".categories button");
-const cards = document.querySelectorAll(".card");
+function getCards() {
+  return document.querySelectorAll(".card");
+}
 const search = document.getElementById("search");
 const empty = document.getElementById("empty");
 
@@ -797,7 +799,7 @@ function filterCards() {
   const query = search.value.toLowerCase();
   let count = 0;
 
-  cards.forEach(card => {
+  getCards().forEach(card => {
     const matchesCategory =
       category === "All" ||
       card.dataset.category === category;
