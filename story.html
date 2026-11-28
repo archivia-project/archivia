@@ -28,8 +28,6 @@ body {
   font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
 }
 
-/* HEADER */
-
 header {
   padding: 19px 8%;
   border-bottom: 1px solid rgba(195,161,106,0.18);
@@ -79,7 +77,7 @@ header {
   padding: 75px 35px 110px;
 }
 
-/* CATEGORY BADGE */
+/* CATEGORY */
 
 .category {
   display: inline-flex;
@@ -118,7 +116,7 @@ h1 {
   color: #f8f4eb;
 }
 
-/* COVER IMAGE */
+/* COVER */
 
 .cover {
   width: 100%;
@@ -174,8 +172,93 @@ h1 {
   letter-spacing: 3px;
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
   display: block;
+}
+
+/* TABLE OF CONTENTS */
+
+.toc {
+  margin-bottom: 38px;
+  padding: 23px 25px;
+  background: linear-gradient(145deg, #191813, #121216);
+  border: 1px solid rgba(195,161,106,0.35);
+  border-radius: 9px;
+}
+
+.toc[hidden] {
+  display: none;
+}
+
+.toc-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  color: #e6c783;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.toc-toggle:hover {
+  color: #f5dca5;
+}
+
+.toc-arrow {
+  font-size: 20px;
+  font-weight: 400;
+  color: #c3a16a;
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  margin-top: 23px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(195,161,106,0.35);
+}
+
+.toc-list a {
+  color: #c9c6bf;
+  font-size: 14px;
+  line-height: 1.7;
+  text-decoration: none;
+  transition: color 0.2s ease, padding 0.2s ease;
+  overflow-wrap: anywhere;
+}
+
+.toc-list a:hover {
+  color: #f0d18a;
+  padding-left: 5px;
+}
+
+.toc-list a.toc-subheading {
+  padding-left: 17px;
+  font-size: 13px;
+  color: #99948a;
+}
+
+.toc-list a.toc-subheading:hover {
+  color: #f0d18a;
+  padding-left: 22px;
+}
+
+.toc-list a::before {
+  content: "—";
+  color: #a8874e;
+  margin-right: 10px;
+}
+
+.toc-list a.toc-subheading::before {
+  content: "·";
+  margin-right: 10px;
 }
 
 /* ARTICLE TEXT */
@@ -202,6 +285,7 @@ h1 {
   margin: 65px 0 24px;
   padding-bottom: 15px;
   border-bottom: 1px solid rgba(195,161,106,0.23);
+  scroll-margin-top: 30px;
 }
 
 .description h3 {
@@ -210,6 +294,7 @@ h1 {
   font-size: 23px;
   line-height: 1.5;
   margin: 40px 0 18px;
+  scroll-margin-top: 30px;
 }
 
 .description strong,
@@ -342,6 +427,20 @@ footer p {
     margin-bottom: 27px;
   }
 
+  .toc {
+    padding: 19px 17px;
+    margin-bottom: 30px;
+  }
+
+  .toc-list {
+    gap: 11px;
+    margin-top: 19px;
+  }
+
+  .toc-list a {
+    font-size: 13px;
+  }
+
   .description {
     font-size: 16px;
     line-height: 1.95;
@@ -404,6 +503,24 @@ footer p {
 
     <span class="reading-label">THE DOCUMENTARY</span>
 
+    <!-- AUTOMATIC TABLE OF CONTENTS -->
+
+    <nav class="toc" id="toc" aria-label="Table of contents" hidden>
+
+      <button
+        class="toc-toggle"
+        id="toc-toggle"
+        type="button"
+        aria-expanded="true"
+      >
+        <span>CONTENTS</span>
+        <span class="toc-arrow" id="toc-arrow">−</span>
+      </button>
+
+      <div class="toc-list" id="toc-list"></div>
+
+    </nav>
+
     <div class="description" id="description">
       <p>
         Explore the forgotten civilizations that shaped humanity
@@ -449,6 +566,77 @@ const coverElement = document.getElementById("cover");
 const descriptionElement = document.getElementById("description");
 const galleryElement = document.getElementById("gallery");
 
+const tocElement = document.getElementById("toc");
+const tocListElement = document.getElementById("toc-list");
+const tocToggleElement = document.getElementById("toc-toggle");
+const tocArrowElement = document.getElementById("toc-arrow");
+
+// TABLE OF CONTENTS BUILDER
+
+function buildTableOfContents() {
+
+  tocListElement.innerHTML = "";
+
+  const headings = descriptionElement.querySelectorAll("h2, h3");
+
+  if (headings.length === 0) {
+    tocElement.hidden = true;
+    return;
+  }
+
+  headings.forEach((heading, index) => {
+
+    // Give every heading a unique ID
+
+    const headingId = "archivia-section-" + (index + 1);
+
+    heading.id = headingId;
+
+    // Create the TOC link
+
+    const link = document.createElement("a");
+
+    link.href = "#" + headingId;
+    link.textContent = heading.textContent.trim();
+
+    // Indent H3 headings
+
+    if (heading.tagName.toLowerCase() === "h3") {
+      link.classList.add("toc-subheading");
+    }
+
+    tocListElement.appendChild(link);
+
+  });
+
+  tocElement.hidden = false;
+
+  // Reset TOC to expanded when a new story loads
+
+  tocListElement.style.display = "flex";
+  tocToggleElement.setAttribute("aria-expanded", "true");
+  tocArrowElement.textContent = "−";
+}
+
+// TOC HIDE / SHOW BUTTON
+
+tocToggleElement.addEventListener("click", () => {
+
+  const isExpanded =
+    tocToggleElement.getAttribute("aria-expanded") === "true";
+
+  if (isExpanded) {
+    tocListElement.style.display = "none";
+    tocToggleElement.setAttribute("aria-expanded", "false");
+    tocArrowElement.textContent = "+";
+  } else {
+    tocListElement.style.display = "flex";
+    tocToggleElement.setAttribute("aria-expanded", "true");
+    tocArrowElement.textContent = "−";
+  }
+
+});
+
 // IMAGE PATH HANDLER
 
 function getCmsImage(path) {
@@ -483,6 +671,7 @@ function getCmsImage(path) {
 
 async function loadCmsStory(slug) {
   try {
+
     const fileURL =
       "https://cdn.jsdelivr.net/gh/archivia-project/archivia@main/documentaries/" +
       slug + ".json";
@@ -517,6 +706,7 @@ async function loadCmsStory(slug) {
     descriptionElement.innerHTML = doc.body || "";
 
     descriptionElement.querySelectorAll("img").forEach(img => {
+
       const src = img.getAttribute("src");
 
       if (src) {
@@ -525,12 +715,15 @@ async function loadCmsStory(slug) {
 
       img.style.maxWidth = "100%";
       img.style.height = "auto";
+
     });
 
     galleryElement.innerHTML = "";
 
     if (Array.isArray(doc.gallery)) {
+
       doc.gallery.forEach(item => {
+
         const imageURL = getCmsImage(item);
 
         if (!imageURL) return;
@@ -542,10 +735,17 @@ async function loadCmsStory(slug) {
         image.loading = "lazy";
 
         galleryElement.appendChild(image);
+
       });
+
     }
 
+    // Build TOC after CMS content loads
+
+    buildTableOfContents();
+
   } catch (error) {
+
     console.error("ARCHIVIA CMS:", error);
 
     titleElement.textContent = "Documentary Unavailable";
@@ -556,12 +756,16 @@ async function loadCmsStory(slug) {
 
     coverElement.style.display = "none";
     galleryElement.innerHTML = "";
+
+    buildTableOfContents();
+
   }
 }
 
 // LEGACY STATIC STORIES
 
 const stories = {
+
   science: {
     category: "SCIENCE",
     title: "The World of Science",
@@ -589,6 +793,7 @@ const stories = {
     image: "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=1400",
     description: "<p>Explore the forgotten civilizations that shaped humanity and left mysteries behind.</p>"
   }
+
 };
 
 // PAGE ROUTING
@@ -597,8 +802,11 @@ const documentarySlug = params.get("doc");
 const oldStoryId = params.get("id");
 
 if (documentarySlug) {
+
   loadCmsStory(documentarySlug);
+
 } else {
+
   galleryElement.innerHTML = "";
 
   const story = stories[oldStoryId] || stories.history;
@@ -607,14 +815,21 @@ if (documentarySlug) {
   titleElement.textContent = story.title;
   coverElement.src = story.image;
   coverElement.style.display = "block";
+
   descriptionElement.innerHTML = story.description;
 
   document.title = "ARCHIVIA — " + story.title;
+
+  // Build TOC for static stories too
+
+  buildTableOfContents();
+
 }
 
 // READING PROGRESS
 
 window.addEventListener("scroll", () => {
+
   const bar = document.getElementById("reading-progress-bar");
 
   if (!bar) return;
@@ -629,6 +844,7 @@ window.addEventListener("scroll", () => {
     : 0;
 
   bar.style.width = progress + "%";
+
 });
 
 </script>
